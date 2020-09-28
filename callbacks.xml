@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml-stylesheet type="text/xsl" href="callbacks.xsl"?>
+
+<plugin name="ZeroMQ" short-name="ZMQ" author="federico.ferri.it@gmail.com">
+    <description>ZeroMQ plugin</description>
+    <command name="bind">
+        <params>
+            <param name="socket" type="string" />
+            <param name="endpoint" type="string" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="close">
+        <params>
+            <param name="socket" type="string" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="connect">
+        <params>
+            <param name="socket" type="string" />
+            <param name="endpoint" type="string" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="ctx_get">
+        <params>
+            <param name="context" type="string" />
+            <param name="option_name" type="int" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="ctx_new">
+        <description>Use <command-ref name="ctx_singleton" /> for sharing a global context.</description>
+        <params>
+        </params>
+        <return>
+            <param name="context" type="string" />
+        </return>
+    </command>
+    <command name="ctx_set">
+        <params>
+            <param name="context" type="string" />
+            <param name="option_name" type="int" />
+            <param name="option_value" type="int" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="ctx_shutdown">
+        <params>
+            <param name="context" type="string" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="ctx_term">
+        <params>
+            <param name="context" type="string" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="ctx_singleton">
+        <description>This function, not part of the libzmq API, return a singleton context instance, useful for sharing a single context across different parts of the application.</description>
+        <params>
+        </params>
+        <return>
+            <param name="context" type="string" />
+        </return>
+    </command>
+    <command name="disconnect">
+        <params>
+            <param name="socket" type="string" />
+            <param name="endpoint" type="string" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="errnum">
+        <params>
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="getsockopt">
+        <params>
+            <param name="socket" type="string" />
+            <param name="option_name" type="int" />
+            <param name="option_len" type="int" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+            <param name="value" type="string" />
+        </return>
+    </command>
+    <command name="has">
+        <params>
+            <param name="capability" type="string" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="msg_close">
+        <params>
+            <param name="msg" type="string" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="msg_copy">
+        <params>
+            <param name="dest" type="string" />
+            <param name="src" type="string" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="msg_data">
+        <params>
+            <param name="msg" type="string" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+            <param name="data" type="string" />
+        </return>
+    </command>
+    <command name="msg_destroy">
+        <params>
+            <param name="msg" type="string" />
+        </params>
+        <return>
+        </return>
+    </command>
+    <command name="msg_gets">
+        <params>
+            <param name="msg" type="string" />
+            <param name="property" type="string" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+            <param name="value" type="string" />
+        </return>
+    </command>
+    <command name="msg_get">
+        <params>
+            <param name="msg" type="string" />
+            <param name="property" type="int" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="msg_init_size">
+        <params>
+            <param name="msg" type="string" />
+            <param name="size" type="int" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="msg_init">
+        <params>
+            <param name="msg" type="string" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="msg_more">
+        <params>
+            <param name="msg" type="string" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="msg_move">
+        <params>
+            <param name="dest" type="string" />
+            <param name="src" type="string" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="msg_new">
+        <params>
+        </params>
+        <return>
+            <param name="msg" type="string" />
+        </return>
+    </command>
+    <command name="msg_recv">
+        <params>
+            <param name="msg" type="string" />
+            <param name="socket" type="string" />
+            <param name="flags" type="int" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="msg_send">
+        <params>
+            <param name="msg" type="string" />
+            <param name="socket" type="string" />
+            <param name="flags" type="int" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="msg_set">
+        <params>
+            <param name="msg" type="string" />
+            <param name="property" type="int" />
+            <param name="value" type="int" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="msg_size">
+        <params>
+            <param name="msg" type="string" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="poll">
+        <params>
+            <param name="sockets" type="table" item-type="string" />
+            <param name="events" type="table" item-type="int" />
+            <param name="timeout" type="int" default="0" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+            <param name="revents" type="table" item-type="int" />
+        </return>
+    </command>
+    <command name="proxy_steerable">
+        <params>
+            <param name="frontend" type="string" />
+            <param name="backend" type="string" />
+            <param name="capture" type="string" />
+            <param name="control" type="string" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="proxy">
+        <params>
+            <param name="frontend" type="string" />
+            <param name="backend" type="string" />
+            <param name="capture" type="string" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="recv">
+        <params>
+            <param name="socket" type="string" />
+            <param name="flags" type="int" />
+            <param name="max_buf_size" type="int" default="256" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+            <param name="data" type="string" />
+        </return>
+    </command>
+    <command name="send">
+        <params>
+            <param name="socket" type="string" />
+            <param name="data" type="string" />
+            <param name="flags" type="int" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="setsockopt">
+        <params>
+            <param name="socket" type="string" />
+            <param name="option_name" type="int" />
+            <param name="option_value" type="string" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="socket_monitor">
+        <params>
+            <param name="socket" type="string" />
+            <param name="endpoint" type="string" />
+            <param name="events" type="int" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="socket">
+        <params>
+            <param name="context" type="string" />
+            <param name="type" type="int" />
+        </params>
+        <return>
+            <param name="socket" type="string" />
+        </return>
+    </command>
+    <command name="strerror">
+        <params>
+            <param name="errnum" type="int" />
+        </params>
+        <return>
+            <param name="message" type="string" />
+        </return>
+    </command>
+    <command name="unbind">
+        <params>
+            <param name="socket" type="string" />
+            <param name="endpoint" type="string" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="version">
+        <params>
+        </params>
+        <return>
+            <param name="major" type="int" />
+            <param name="minor" type="int" />
+            <param name="patch" type="int" />
+        </return>
+    </command>
+</plugin>
