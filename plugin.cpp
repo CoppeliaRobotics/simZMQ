@@ -42,23 +42,23 @@ public:
                 switch(zmq_errno())
                 {
                 case EFAULT:
-                    log(sim_verbosity_errors, "zmq_ctx_shutdown: EFAULT");
+                    sim::addLog(sim_verbosity_errors, "zmq_ctx_shutdown: EFAULT");
                     break;
                 default:
-                    log(sim_verbosity_errors, "zmq_ctx_shutdown: unknown error");
+                    sim::addLog(sim_verbosity_errors, "zmq_ctx_shutdown: unknown error");
                     break;
                 }
             if(zmq_ctx_destroy(global_context) == -1)
                 switch(zmq_errno())
                 {
                 case EFAULT:
-                    log(sim_verbosity_errors, "zmq_ctx_destroy: EFAULT");
+                    sim::addLog(sim_verbosity_errors, "zmq_ctx_destroy: EFAULT");
                     break;
                 case EINTR:
-                    log(sim_verbosity_errors, "zmq_ctx_destroy: EINTR");
+                    sim::addLog(sim_verbosity_errors, "zmq_ctx_destroy: EINTR");
                     break;
                 default:
-                    log(sim_verbosity_errors, "zmq_ctx_destroy: unknown error");
+                    sim::addLog(sim_verbosity_errors, "zmq_ctx_destroy: unknown error");
                     break;
                 }
             global_context = nullptr;
