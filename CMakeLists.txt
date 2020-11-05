@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 project(simExtZeroMQ)
 
-set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_MACOSX_RPATH 1)
 
