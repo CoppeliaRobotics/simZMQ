@@ -10,9 +10,9 @@
 #include <boost/algorithm/string/predicate.hpp>
 #include "simPlusPlus/Plugin.h"
 #include "simPlusPlus/Handle.h"
+#include "config.h"
 #include "plugin.h"
 #include "stubs.h"
-#include "config.h"
 #include "zmq.h"
 
 using sim::Handle;
