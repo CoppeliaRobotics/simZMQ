@@ -3,11 +3,6 @@
 #include <set>
 #include <map>
 #include <stdexcept>
-#include <boost/format.hpp>
-#include <boost/foreach.hpp>
-#include <boost/regex.hpp>
-#include <boost/bind.hpp>
-#include <boost/algorithm/string/predicate.hpp>
 #include "simPlusPlus/Plugin.h"
 #include "simPlusPlus/Handle.h"
 #include "config.h"
