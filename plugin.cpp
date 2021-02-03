@@ -39,7 +39,9 @@ public:
         sim::registerScriptVariable("simZMQ.ENOMEM", ENOMEM, 0);
         sim::registerScriptVariable("simZMQ.EACCES", EACCES, 0);
         sim::registerScriptVariable("simZMQ.EFAULT", EFAULT, 0);
+        #ifndef _WIN32
         sim::registerScriptVariable("simZMQ.ENOTBLK", ENOTBLK, 0);
+        #endif
         sim::registerScriptVariable("simZMQ.EBUSY", EBUSY, 0);
         sim::registerScriptVariable("simZMQ.EEXIST", EEXIST, 0);
         sim::registerScriptVariable("simZMQ.EXDEV", EXDEV, 0);
@@ -69,10 +71,14 @@ public:
         sim::registerScriptVariable("simZMQ.EPROTOTYPE", EPROTOTYPE, 0);
         sim::registerScriptVariable("simZMQ.ENOPROTOOPT", ENOPROTOOPT, 0);
         sim::registerScriptVariable("simZMQ.EPROTONOSUPPORT", EPROTONOSUPPORT, 0);
+        #ifndef _WIN32
         sim::registerScriptVariable("simZMQ.ESOCKTNOSUPPORT", ESOCKTNOSUPPORT, 0);
+        #endif
         sim::registerScriptVariable("simZMQ.ENOTSUP", ENOTSUP, 0);
         sim::registerScriptVariable("simZMQ.EOPNOTSUPP", EOPNOTSUPP, 0);
+        #ifndef _WIN32
         sim::registerScriptVariable("simZMQ.EPFNOSUPPORT", EPFNOSUPPORT, 0);
+        #endif
         sim::registerScriptVariable("simZMQ.EAFNOSUPPORT", EAFNOSUPPORT, 0);
         sim::registerScriptVariable("simZMQ.EADDRINUSE", EADDRINUSE, 0);
         sim::registerScriptVariable("simZMQ.EADDRNOTAVAIL", EADDRNOTAVAIL, 0);
@@ -84,15 +90,20 @@ public:
         sim::registerScriptVariable("simZMQ.ENOBUFS", ENOBUFS, 0);
         sim::registerScriptVariable("simZMQ.EISCONN", EISCONN, 0);
         sim::registerScriptVariable("simZMQ.ENOTCONN", ENOTCONN, 0);
+        #ifndef _WIN32
         sim::registerScriptVariable("simZMQ.ESHUTDOWN", ESHUTDOWN, 0);
         sim::registerScriptVariable("simZMQ.ETOOMANYREFS", ETOOMANYREFS, 0);
+        #endif
         sim::registerScriptVariable("simZMQ.ETIMEDOUT", ETIMEDOUT, 0);
         sim::registerScriptVariable("simZMQ.ECONNREFUSED", ECONNREFUSED, 0);
         sim::registerScriptVariable("simZMQ.ELOOP", ELOOP, 0);
         sim::registerScriptVariable("simZMQ.ENAMETOOLONG", ENAMETOOLONG, 0);
+        #ifndef _WIN32
         sim::registerScriptVariable("simZMQ.EHOSTDOWN", EHOSTDOWN, 0);
+        #endif
         sim::registerScriptVariable("simZMQ.EHOSTUNREACH", EHOSTUNREACH, 0);
         sim::registerScriptVariable("simZMQ.ENOTEMPTY", ENOTEMPTY, 0);
+        #ifndef _WIN32
         sim::registerScriptVariable("simZMQ.EPROCLIM", EPROCLIM, 0);
         sim::registerScriptVariable("simZMQ.EUSERS", EUSERS, 0);
         sim::registerScriptVariable("simZMQ.EDQUOT", EDQUOT, 0);
@@ -103,36 +114,49 @@ public:
         sim::registerScriptVariable("simZMQ.EPROGUNAVAIL", EPROGUNAVAIL, 0);
         sim::registerScriptVariable("simZMQ.EPROGMISMATCH", EPROGMISMATCH, 0);
         sim::registerScriptVariable("simZMQ.EPROCUNAVAIL", EPROCUNAVAIL, 0);
+        #endif
         sim::registerScriptVariable("simZMQ.ENOLCK", ENOLCK, 0);
         sim::registerScriptVariable("simZMQ.ENOSYS", ENOSYS, 0);
+        #ifndef _WIN32
         sim::registerScriptVariable("simZMQ.EFTYPE", EFTYPE, 0);
         sim::registerScriptVariable("simZMQ.EAUTH", EAUTH, 0);
         sim::registerScriptVariable("simZMQ.ENEEDAUTH", ENEEDAUTH, 0);
         sim::registerScriptVariable("simZMQ.EPWROFF", EPWROFF, 0);
         sim::registerScriptVariable("simZMQ.EDEVERR", EDEVERR, 0);
+        #endif
         sim::registerScriptVariable("simZMQ.EOVERFLOW", EOVERFLOW, 0);
+        #ifndef _WIN32
         sim::registerScriptVariable("simZMQ.EBADEXEC", EBADEXEC, 0);
         sim::registerScriptVariable("simZMQ.EBADARCH", EBADARCH, 0);
         sim::registerScriptVariable("simZMQ.ESHLIBVERS", ESHLIBVERS, 0);
         sim::registerScriptVariable("simZMQ.EBADMACHO", EBADMACHO, 0);
+        #endif
         sim::registerScriptVariable("simZMQ.ECANCELED", ECANCELED, 0);
         sim::registerScriptVariable("simZMQ.EIDRM", EIDRM, 0);
         sim::registerScriptVariable("simZMQ.ENOMSG", ENOMSG, 0);
         sim::registerScriptVariable("simZMQ.EILSEQ", EILSEQ, 0);
+        #ifndef _WIN32
         sim::registerScriptVariable("simZMQ.ENOATTR", ENOATTR, 0);
+        #endif
         sim::registerScriptVariable("simZMQ.EBADMSG", EBADMSG, 0);
+        #ifndef _WIN32
         sim::registerScriptVariable("simZMQ.EMULTIHOP", EMULTIHOP, 0);
+        #endif
         sim::registerScriptVariable("simZMQ.ENODATA", ENODATA, 0);
         sim::registerScriptVariable("simZMQ.ENOLINK", ENOLINK, 0);
         sim::registerScriptVariable("simZMQ.ENOSR", ENOSR, 0);
         sim::registerScriptVariable("simZMQ.ENOSTR", ENOSTR, 0);
         sim::registerScriptVariable("simZMQ.EPROTO", EPROTO, 0);
         sim::registerScriptVariable("simZMQ.ETIME", ETIME, 0);
+        #ifndef _WIN32
         sim::registerScriptVariable("simZMQ.ENOPOLICY", ENOPOLICY, 0);
+        #endif
         sim::registerScriptVariable("simZMQ.ENOTRECOVERABLE", ENOTRECOVERABLE, 0);
         sim::registerScriptVariable("simZMQ.EOWNERDEAD", EOWNERDEAD, 0);
+        #ifndef _WIN32
         sim::registerScriptVariable("simZMQ.EQFULL", EQFULL, 0);
         sim::registerScriptVariable("simZMQ.ELAST", ELAST, 0);
+        #endif
         sim::registerScriptVariable("simZMQ.EFSM", EFSM, 0);
         sim::registerScriptVariable("simZMQ.ENOCOMPATPROTO", ENOCOMPATPROTO, 0);
         sim::registerScriptVariable("simZMQ.ETERM", ETERM, 0);
