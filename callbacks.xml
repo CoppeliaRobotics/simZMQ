@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="callbacks.xsl"?>
 
 <plugin name="ZMQ" author="federico.ferri.it@gmail.com">
-    <description>ZeroMQ plugin</description>
+    <description>ZeroMQ plugin. Description of ZeroMQ API functions is not provided. Please refer to <a href="http://api.zeromq.org">http://api.zeromq.org</a>.</description>
     <command name="bind">
         <params>
             <param name="socket" type="string" />
