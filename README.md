@@ -21,17 +21,32 @@ E.g., the hello world example from the guide:
 ```lua
 -- requester:
 
-function sysCall_threadmain()
-    printf('Connecting to hello world server...')
+function sysCall_init()
+    corout=coroutine.create(coroutineMain)
+end
+
+function sysCall_actuation()
+    if coroutine.status(corout)~='dead' then
+        local ok,errorMsg=coroutine.resume(corout)
+        if errorMsg then
+            error(debug.traceback(corout,errorMsg),2)
+        end
+    end
+end
+
+function coroutineMain()
+    print('Connecting to hello world server...')
     context=simZMQ.ctx_new()
     requester=simZMQ.socket(context,simZMQ.REQ)
     simZMQ.connect(requester,'tcp://localhost:5555')
 
     for request_nbr=0,10 do
-        print('Sending Hello...')
-        simZMQ.send(requester,'Hello',0)
+        print('-----------------------------------------')
+        local data='Hello'
+        print('[requester] Sending "%s"...',data)
+        simZMQ.send(requester,data,0)
         local rc,data=simZMQ.recv(requester,0)
-        printf('Received "%s"',data)
+        print('[requester] Received "%s"',data)
     end
 end
 
@@ -44,18 +59,31 @@ end
 ```lua
 -- responder:
 
-function sysCall_threadmain()
+function sysCall_init()
+    corout=coroutine.create(coroutineMain)
+end
+
+function sysCall_actuation()
+    if coroutine.status(corout)~='dead' then
+        local ok,errorMsg=coroutine.resume(corout)
+        if errorMsg then
+            error(debug.traceback(corout,errorMsg),2)
+        end
+    end
+end
+
+function coroutineMain()
     context=simZMQ.ctx_new()
     responder=simZMQ.socket(context,simZMQ.REP)
     local rc=simZMQ.bind(responder,'tcp://*:5555')
     if rc~=0 then error('failed bind') end
-
+    
     while true do
         local rc,data=simZMQ.recv(responder,0)
-        printf('Received "%s"',data)
-        sim.wait(1,false) -- Do some 'work'
-        print('Sending World...')
-        simZMQ.send(responder,'World',0)
+        print('[responder] Received "%s"',data)
+        data='World'
+        print('[responder] Sending "%s"...',data)
+        simZMQ.send(responder,data,0)
     end
 end
 
