@@ -36,9 +36,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_BINARY_DI
 
 coppeliasim_add_plugin(simExtZMQ SOURCES plugin.cpp)
 if(WIN32)
-    #target_link_libraries(simExtZMQ PRIVATE libzmq libzmq-static)
-    target_link_libraries(simExtZMQ PRIVATE libzmq)
-    #target_link_libraries(simExtZMQ PRIVATE libzmq-static)
+    target_link_libraries(simExtZMQ libzmq-static)
 else()
     target_link_libraries(simExtZMQ PkgConfig::ZMQ)
 endif()
