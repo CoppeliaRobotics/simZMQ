@@ -10,7 +10,6 @@ endif()
 
 if(WIN32)
     find_package(ZeroMQ CONFIG REQUIRED)
-    target_link_libraries(main PRIVATE libzmq libzmq-static)
 else()
     find_package(PkgConfig REQUIRED)
     pkg_check_modules(ZMQ REQUIRED IMPORTED_TARGET libzmq)
@@ -37,7 +36,9 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_BINARY_DI
 
 coppeliasim_add_plugin(simExtZMQ SOURCES plugin.cpp)
 if(WIN32)
-    target_link_libraries(simExtZMQ libzmq-static)
+    #target_link_libraries(simExtZMQ PRIVATE libzmq libzmq-static)
+    target_link_libraries(simExtZMQ PRIVATE libzmq)
+    #target_link_libraries(simExtZMQ PRIVATE libzmq-static)
 else()
     target_link_libraries(simExtZMQ PkgConfig::ZMQ)
 endif()
