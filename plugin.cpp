@@ -443,7 +443,7 @@ public:
     void ctx_new(ctx_new_in *in, ctx_new_out *out)
     {
         void *context = zmq_ctx_new();
-        out->context = contextHandles.add(context, in->_scriptID);
+        out->context = contextHandles.add(context, in->_.scriptID);
     }
 
     void ctx_set(ctx_set_in *in, ctx_set_out *out)
@@ -570,7 +570,7 @@ public:
     void msg_new(msg_new_in *in, msg_new_out *out)
     {
         zmq_msg_t *msg = new zmq_msg_t;
-        out->msg = msgHandles.add(msg, in->_scriptID);
+        out->msg = msgHandles.add(msg, in->_.scriptID);
     }
 
     void msg_recv(msg_recv_in *in, msg_recv_out *out)
@@ -663,7 +663,7 @@ public:
     {
         void *context = contextHandles.get(in->context);
         void *socket = zmq_socket(context, in->type);
-        out->socket = socketHandles.add(socket, in->_scriptID);
+        out->socket = socketHandles.add(socket, in->_.scriptID);
     }
 
     void strerror(strerror_in *in, strerror_out *out)
