@@ -14,6 +14,17 @@ else()
     find_package(PkgConfig REQUIRED)
     pkg_check_modules(ZMQ REQUIRED IMPORTED_TARGET libzmq)
 endif()
+find_package(Python3 REQUIRED COMPONENTS Interpreter)
+
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/generated)
+add_custom_command(
+    OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/generated/zmq_constants.cpp
+    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/zmq_constants.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/zmq_constants.py
+        ${CMAKE_CURRENT_BINARY_DIR}/generated/zmq_constants.cpp
+        ${ZMQ_INCLUDE_DIRS}
+)
+add_custom_target(generate_const DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/generated/zmq_constants.cpp)
 
 if(NOT LIBPLUGIN_DIR)
     if(DEFINED ENV{COPPELIASIM_ROOT_DIR})
@@ -35,6 +46,7 @@ coppeliasim_generate_stubs(${CMAKE_CURRENT_BINARY_DIR}/generated XML_FILE ${CMAK
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
 coppeliasim_add_plugin(simExtZMQ SOURCES plugin.cpp)
+add_dependencies(simExtZMQ generate_const)
 if(WIN32)
     target_link_libraries(simExtZMQ libzmq-static)
 else()
