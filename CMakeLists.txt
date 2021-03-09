@@ -15,6 +15,9 @@ else()
     find_package(PkgConfig REQUIRED)
     pkg_check_modules(ZMQ REQUIRED IMPORTED_TARGET libzmq)
 endif()
+
+find_path(ZMQ_H_DIR zmq.h PATHS ${ZMQ_INCLUDE_DIRS} REQUIRED)
+
 find_package(Python3 REQUIRED COMPONENTS Interpreter)
 
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/generated)
@@ -23,7 +26,7 @@ add_custom_command(
     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/zmq_constants.py
     COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/zmq_constants.py
         ${CMAKE_CURRENT_BINARY_DIR}/generated/zmq_constants.cpp
-        ${ZMQ_INCLUDE_DIRS}
+        ${ZMQ_H_DIR}/zmq.h
 )
 add_custom_target(generate_const DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/generated/zmq_constants.cpp)
 
