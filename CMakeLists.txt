@@ -10,6 +10,7 @@ endif()
 
 if(WIN32)
     find_package(ZeroMQ CONFIG REQUIRED)
+    set(ZMQ_INCLUDE_DIRS ${ZeroMQ_INCLUDE_DIR})
 else()
     find_package(PkgConfig REQUIRED)
     pkg_check_modules(ZMQ REQUIRED IMPORTED_TARGET libzmq)
