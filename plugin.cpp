@@ -208,7 +208,6 @@ public:
         void *data = zmq_msg_data(msg);
         if(data)
             out->data = std::string(reinterpret_cast<const char*>(data), zmq_msg_size(msg));
-        out->result = data ? 0 : -1;
     }
 
     void msg_destroy(msg_destroy_in *in, msg_destroy_out *out)
@@ -327,7 +326,8 @@ public:
         void *socket = socketHandles.get(in->socket);
         std::string buf(in->max_buf_size, 0);
         out->result = zmq_recv(socket, buf.data(), in->max_buf_size, in->flags);
-        out->data = buf.substr(0, out->result);
+        if(out->result != -1)
+            out->data = buf.substr(0, out->result);
     }
 
     void send(send_in *in, send_out *out)
