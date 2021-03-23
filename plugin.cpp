@@ -113,6 +113,7 @@ public:
     {
         void *socket = socketHandles.get(in->socket);
         out->result = zmq_close(socket);
+        socketHandles.remove(socket);
     }
 
     void connect(connect_in *in, connect_out *out)
@@ -153,6 +154,7 @@ public:
         if(global_context && context == global_context)
             throw std::runtime_error("singleton context must not be terminated");
         out->result = zmq_ctx_term(context);
+        contextHandles.remove(context);
     }
 
     void ctx_singleton(ctx_singleton_in *in, ctx_singleton_out *out)
@@ -212,7 +214,7 @@ public:
     void msg_destroy(msg_destroy_in *in, msg_destroy_out *out)
     {
         zmq_msg_t *msg = msgHandles.get(in->msg);
-        delete msg;
+        delete msgHandles.remove(msg);
     }
 
     void msg_gets(msg_gets_in *in, msg_gets_out *out)
