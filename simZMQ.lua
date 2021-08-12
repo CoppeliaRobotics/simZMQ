@@ -27,11 +27,8 @@ function simZMQ.__init()
             end
         end
     end
-
-    simZMQ.__init=nil
 end
 
-__initFunctions=__initFunctions or {}
-table.insert(__initFunctions,simZMQ.__init)
+sim.registerScriptFuncHook('sysCall_init','simZMQ.__init',true)
 
 return simZMQ
