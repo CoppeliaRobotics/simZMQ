@@ -324,10 +324,30 @@ public:
     void recv(recv_in *in, recv_out *out)
     {
         void *socket = socketHandles.get(in->socket);
-        std::string buf(in->max_buf_size, 0);
-        out->result = zmq_recv(socket, buf.data(), in->max_buf_size, in->flags);
-        if(out->result != -1)
-            out->data = buf.substr(0, out->result);
+        if(in->max_buf_size)
+        {
+            int sz = in->max_buf_size.get();
+            std::string buf(sz, 0);
+            out->result = zmq_recv(socket, buf.data(), sz, in->flags);
+            if(out->result != -1)
+                out->data = buf.substr(0, out->result);
+        }
+        else
+        {
+            // buffer size not specified -> use tmp zmq_msg_t
+            int rc;
+            zmq_msg_t msg;
+            rc = zmq_msg_init(&msg);
+            if(rc != 0) throw sim::exception("zmq_msg_init: %s", zmq_strerror(errno));
+            out->result = zmq_msg_recv(&msg, socket, in->flags);
+            if(out->result != -1)
+            {
+                std::string buf(reinterpret_cast<const char*>(zmq_msg_data(&msg)), zmq_msg_size(&msg));
+                out->data = buf;
+            }
+            rc = zmq_msg_close(&msg);
+            if(rc != 0) throw sim::exception("zmq_msg_close: %s", zmq_strerror(errno));
+        }
     }
 
     void send(send_in *in, send_out *out)

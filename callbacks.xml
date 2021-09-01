@@ -278,10 +278,11 @@
         </return>
     </command>
     <command name="recv">
+        <description>simZMQ implementation detail: if max_buf_size is nil, a temporary zmq_msg_t data structure will be used to retrieve the full length message.</description>
         <params>
             <param name="socket" type="string" />
             <param name="flags" type="int" />
-            <param name="max_buf_size" type="int" default="256" />
+            <param name="max_buf_size" type="int" nullable="true" default="nil" />
         </params>
         <return>
             <param name="result" type="int" />
