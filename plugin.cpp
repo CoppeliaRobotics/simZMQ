@@ -4,19 +4,14 @@
 #include <map>
 #include <stdexcept>
 #include "simPlusPlus/Plugin.h"
-#include "simPlusPlus/Handle.h"
+#include "simPlusPlus/Handles.h"
 #include "config.h"
 #include "plugin.h"
 #include "stubs.h"
 #include "zmq.h"
 
-using sim::Handle;
-using sim::Handles;
-
 typedef void zmq_context_t;
 typedef void zmq_socket_t;
-template<> std::string Handle<void>::tag() { return "simZMQ.*"; }
-template<> std::string Handle<zmq_msg_t>::tag() { return "simZMQ.msg"; }
 
 class Plugin : public sim::Plugin
 {
@@ -79,6 +74,7 @@ public:
                     break;
                 }
             global_context = nullptr;
+            global_context_handle = "";
         }
     }
 
@@ -160,9 +156,11 @@ public:
     void ctx_singleton(ctx_singleton_in *in, ctx_singleton_out *out)
     {
         if(!global_context)
+        {
             global_context = zmq_ctx_new();
-        // don't map global_context to handles: it wil be destroyed in onEnd()
-        out->context = Handle<zmq_context_t>::str(global_context);
+            global_context_handle = contextHandles.add(global_context);
+        }
+        out->context = global_context_handle;
     }
 
     void disconnect(disconnect_in *in, disconnect_out *out)
@@ -393,9 +391,10 @@ public:
 
 private:
     void *global_context = nullptr;
-    Handles<void> contextHandles;
-    Handles<void> socketHandles;
-    Handles<zmq_msg_t> msgHandles;
+    std::string global_context_handle;
+    sim::Handles<zmq_context_t*> contextHandles{"zmq.context"};
+    sim::Handles<zmq_socket_t*> socketHandles{"zmq.socket"};
+    sim::Handles<zmq_msg_t*> msgHandles{"zmq.msg"};
 };
 
 SIM_PLUGIN(PLUGIN_NAME, PLUGIN_VERSION, Plugin)
