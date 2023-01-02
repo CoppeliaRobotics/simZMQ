@@ -3,12 +3,18 @@
 ### Compiling
 
 1. Install required packages for [libPlugin](https://github.com/CoppeliaRobotics/libPlugin): see libPlugin's README
-2. Checkout and compile
+2. Checkout, compile and install into CoppeliaSim:
 ```sh
-$ git clone --recursive https://github.com/CoppeliaRobotics/simExtZMQ.git
-$ cmake .
+$ git clone https://github.com/CoppeliaRobotics/simExtZMQ.git
+$ cd simExtZMQ
+$ git checkout coppeliasim-v4.5.0-rev0
+$ mkdir -p build && cd build
+$ cmake -DCMAKE_BUILD_TYPE=Release ..
 $ cmake --build .
+$ cmake --install .
 ```
+
+NOTE: replace `coppeliasim-v4.5.0-rev0` with the actual CoppeliaSim version you have.
 
 ### Documentation
 
@@ -77,7 +83,7 @@ function coroutineMain()
     responder=simZMQ.socket(context,simZMQ.REP)
     local rc=simZMQ.bind(responder,'tcp://*:5555')
     if rc~=0 then error('failed bind') end
-    
+
     while true do
         local rc,data=simZMQ.recv(responder,0)
         print('[responder] Received "%s"',data)
