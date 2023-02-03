@@ -3,8 +3,8 @@
 #include <set>
 #include <map>
 #include <stdexcept>
-#include "simPlusPlus/Plugin.h"
-#include "simPlusPlus/Handles.h"
+#include <simPlusPlus/Plugin.h>
+#include <simPlusPlus/Handles.h>
 #include "config.h"
 #include "plugin.h"
 #include "stubs.h"
