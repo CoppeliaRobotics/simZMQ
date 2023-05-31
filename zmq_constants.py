@@ -21,7 +21,7 @@ with open(args.out_file, 'w') as f_out:
             if m := re.match('#define\s+ZMQ_(\w+)\s+([^\s]+)', line):
                 sym = m.group(1)
                 if not skip(sym):
-                    f_out.write(f'sim::registerScriptVariable("simZMQ.{sym}", ZMQ_{sym}, 0);')
+                    f_out.write(f'sim::registerScriptVariable("{sym}", ZMQ_{sym}, 0);')
                     f_out.write('\n')
             elif m := re.match('#if.*', line):
                 f_out.write(line + '\n')

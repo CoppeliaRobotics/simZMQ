@@ -16,29 +16,29 @@ typedef void zmq_socket_t;
 class Plugin : public sim::Plugin
 {
 public:
-    void onStart()
+    void onInit()
     {
         if(!registerScriptStuff())
             throw std::runtime_error("failed to register script stuff");
 
-        sim::registerScriptVariable("simZMQ.EADDRINUSE", EADDRINUSE, 0);
-        sim::registerScriptVariable("simZMQ.EADDRNOTAVAIL", EADDRNOTAVAIL, 0);
-        sim::registerScriptVariable("simZMQ.EAGAIN", EAGAIN, 0);
-        sim::registerScriptVariable("simZMQ.EFAULT", EFAULT, 0);
-        sim::registerScriptVariable("simZMQ.EFSM", EFSM, 0);
-        sim::registerScriptVariable("simZMQ.EHOSTUNREACH", EHOSTUNREACH, 0);
-        sim::registerScriptVariable("simZMQ.EINTR", EINTR, 0);
-        sim::registerScriptVariable("simZMQ.EINVAL", EINVAL, 0);
-        sim::registerScriptVariable("simZMQ.EMFILE", EMFILE, 0);
-        sim::registerScriptVariable("simZMQ.EMTHREAD", EMTHREAD, 0);
-        sim::registerScriptVariable("simZMQ.ENOCOMPATPROTO", ENOCOMPATPROTO, 0);
-        sim::registerScriptVariable("simZMQ.ENODEV", ENODEV, 0);
-        sim::registerScriptVariable("simZMQ.ENOENT", ENOENT, 0);
-        sim::registerScriptVariable("simZMQ.ENOMEM", ENOMEM, 0);
-        sim::registerScriptVariable("simZMQ.ENOTSOCK", ENOTSOCK, 0);
-        sim::registerScriptVariable("simZMQ.ENOTSUP", ENOTSUP, 0);
-        sim::registerScriptVariable("simZMQ.EPROTONOSUPPORT", EPROTONOSUPPORT, 0);
-        sim::registerScriptVariable("simZMQ.ETERM", ETERM, 0);
+        sim::registerScriptVariable("EADDRINUSE", EADDRINUSE, 0);
+        sim::registerScriptVariable("EADDRNOTAVAIL", EADDRNOTAVAIL, 0);
+        sim::registerScriptVariable("EAGAIN", EAGAIN, 0);
+        sim::registerScriptVariable("EFAULT", EFAULT, 0);
+        sim::registerScriptVariable("EFSM", EFSM, 0);
+        sim::registerScriptVariable("EHOSTUNREACH", EHOSTUNREACH, 0);
+        sim::registerScriptVariable("EINTR", EINTR, 0);
+        sim::registerScriptVariable("EINVAL", EINVAL, 0);
+        sim::registerScriptVariable("EMFILE", EMFILE, 0);
+        sim::registerScriptVariable("EMTHREAD", EMTHREAD, 0);
+        sim::registerScriptVariable("ENOCOMPATPROTO", ENOCOMPATPROTO, 0);
+        sim::registerScriptVariable("ENODEV", ENODEV, 0);
+        sim::registerScriptVariable("ENOENT", ENOENT, 0);
+        sim::registerScriptVariable("ENOMEM", ENOMEM, 0);
+        sim::registerScriptVariable("ENOTSOCK", ENOTSOCK, 0);
+        sim::registerScriptVariable("ENOTSUP", ENOTSUP, 0);
+        sim::registerScriptVariable("EPROTONOSUPPORT", EPROTONOSUPPORT, 0);
+        sim::registerScriptVariable("ETERM", ETERM, 0);
 
 #include "zmq_constants.cpp"
 
@@ -46,7 +46,7 @@ public:
         setBuildDate(BUILD_DATE);
     }
 
-    void onEnd()
+    void onCleanup()
     {
         if(global_context)
         {

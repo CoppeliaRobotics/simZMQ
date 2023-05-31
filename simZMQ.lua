@@ -1,4 +1,4 @@
-local simZMQ={}
+local simZMQ=loadPlugin'simZMQ'
 
 function simZMQ.__init()
     -- wrap blocking functions with busy-wait loop:
@@ -175,5 +175,7 @@ function simZMQ.__checkError.unbind(result)
 end
 
 sim.registerScriptFuncHook('sysCall_init','simZMQ.__init',true)
+
+(require'simZMQ-typecheck')(simZMQ)
 
 return simZMQ

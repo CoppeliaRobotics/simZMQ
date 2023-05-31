@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(simExtZMQ)
+project(simZMQ)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_MACOSX_RPATH 1)
@@ -53,6 +53,6 @@ coppeliasim_generate_stubs(${CMAKE_CURRENT_BINARY_DIR}/generated XML_FILE ${CMAK
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
-coppeliasim_add_plugin(simExtZMQ SOURCES plugin.cpp)
-add_dependencies(simExtZMQ generate_const)
-target_link_libraries(simExtZMQ ${ZMQ_LIBRARIES})
+coppeliasim_add_plugin(simZMQ SOURCES plugin.cpp)
+add_dependencies(simZMQ generate_const)
+target_link_libraries(simZMQ ${ZMQ_LIBRARIES})
