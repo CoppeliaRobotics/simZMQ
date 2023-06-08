@@ -397,5 +397,5 @@ private:
     sim::Handles<zmq_msg_t*> msgHandles{"zmq.msg"};
 };
 
-SIM_PLUGIN(PLUGIN_NAME, PLUGIN_VERSION, Plugin)
+SIM_PLUGIN(Plugin)
 #include "stubsPlusPlus.cpp"

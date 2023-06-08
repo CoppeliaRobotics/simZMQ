@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <?xml-stylesheet type="text/xsl" href="callbacks.xsl"?>
 
-<plugin name="ZMQ" author="federico.ferri.it@gmail.com">
+<plugin name="simZMQ" author="federico.ferri.it@gmail.com">
     <description>ZeroMQ plugin. Description of ZeroMQ API functions is not provided. Please refer to <a href="http://api.zeromq.org">http://api.zeromq.org</a>.</description>
     <command name="bind">
         <params>
