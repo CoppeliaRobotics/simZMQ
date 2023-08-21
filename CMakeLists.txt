@@ -55,4 +55,10 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_BINARY_DI
 
 coppeliasim_add_plugin(simZMQ SOURCES plugin.cpp)
 add_dependencies(simZMQ generate_const)
+if(APPLE)
+    # XXX: on macOS fails to link because only -lzmq is passed, without -L...
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(ZMQ1 REQUIRED libzmq)
+    target_link_directories(simZMQ PRIVATE ${ZMQ1_LIBRARY_DIRS})
+endif()
 target_link_libraries(simZMQ PRIVATE ${ZMQ_LIBRARIES})
