@@ -322,9 +322,9 @@ public:
     void recv(recv_in *in, recv_out *out)
     {
         void *socket = socketHandles.get(in->socket);
-        if(in->max_buf_size)
+        if(in->max_buf_size.has_value())
         {
-            int sz = in->max_buf_size.get();
+            int sz = in->max_buf_size.value();
             std::string buf(sz, 0);
             out->result = zmq_recv(socket, buf.data(), sz, in->flags);
             if(out->result != -1)
