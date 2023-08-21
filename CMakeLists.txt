@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.16.3)
 project(simZMQ)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -55,4 +55,4 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_BINARY_DI
 
 coppeliasim_add_plugin(simZMQ SOURCES plugin.cpp)
 add_dependencies(simZMQ generate_const)
-target_link_libraries(simZMQ ${ZMQ_LIBRARIES})
+target_link_libraries(simZMQ PRIVATE ${ZMQ_LIBRARIES})
