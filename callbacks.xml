@@ -137,7 +137,7 @@
             <param name="msg" type="string" />
         </params>
         <return>
-            <param name="data" type="string" nullable="true" />
+            <param name="data" type="buffer" nullable="true" />
         </return>
     </command>
     <command name="msg_destroy">
@@ -286,13 +286,13 @@
         </params>
         <return>
             <param name="result" type="int" />
-            <param name="data" type="string" nullable="true" />
+            <param name="data" type="buffer" nullable="true" />
         </return>
     </command>
     <command name="send">
         <params>
             <param name="socket" type="string" />
-            <param name="data" type="string" />
+            <param name="data" type="buffer" />
             <param name="flags" type="int" />
         </params>
         <return>
