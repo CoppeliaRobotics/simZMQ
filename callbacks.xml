@@ -104,7 +104,7 @@
         </params>
         <return>
             <param name="result" type="int" />
-            <param name="value" type="string" />
+            <param name="value" type="buffer" />
         </return>
     </command>
     <command name="has">
@@ -303,7 +303,7 @@
         <params>
             <param name="socket" type="string" />
             <param name="option_name" type="int" />
-            <param name="option_value" type="string" />
+            <param name="option_value" type="buffer" />
         </params>
         <return>
             <param name="result" type="int" />
