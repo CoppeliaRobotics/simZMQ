@@ -147,7 +147,7 @@ for func_name,flags_idx in pairs{msg_send=3,msg_recv=3,send=3,recv=2} do
                 if ret[1]==-1 then
                     local err=simZMQ.errnum()
                     if err==simZMQ.EAGAIN then
-                        sim.switchThread()
+                        sim.yield()
                     else
                         return -1,nil
                     end
