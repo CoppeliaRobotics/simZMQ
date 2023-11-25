@@ -389,6 +389,90 @@ public:
         zmq_version(&out->major, &out->minor, &out->patch);
     }
 
+    void ctx_set_ext(ctx_set_ext_in *in, ctx_set_ext_out *out)
+    {
+#ifdef ZMQ_BUILD_DRAFT_API
+        void *context = contextHandles.get(in->context);
+        out->result = zmq_ctx_set_ext(context, in->option_name, in->option_value.data(), in->option_value.size());
+#endif // ZMQ_BUILD_DRAFT_API
+    }
+
+    void ctx_get_ext(ctx_get_ext_in *in, ctx_get_ext_out *out)
+    {
+#ifdef ZMQ_BUILD_DRAFT_API
+        char buf[256];
+        size_t sz;
+        void *context = contextHandles.get(in->context);
+        out->result = zmq_ctx_get_ext(context, in->option_name, &buf[0], &sz);
+        out->data = std::string(buf, sz);
+#endif // ZMQ_BUILD_DRAFT_API
+    }
+
+    void join(join_in *in, join_out *out)
+    {
+#ifdef ZMQ_BUILD_DRAFT_API
+        void *socket = socketHandles.get(in->socket);
+        out->result = zmq_join(socket, in->group.c_str());
+#endif // ZMQ_BUILD_DRAFT_API
+    }
+
+    void leave(leave_in *in, leave_out *out)
+    {
+#ifdef ZMQ_BUILD_DRAFT_API
+        void *socket = socketHandles.get(in->socket);
+        out->result = zmq_leave(socket, in->group.c_str());
+#endif // ZMQ_BUILD_DRAFT_API
+    }
+
+    void connect_peer(connect_peer_in *in, connect_peer_out *out)
+    {
+#ifdef ZMQ_BUILD_DRAFT_API
+        void *socket = socketHandles.get(in->socket);
+        out->result = zmq_connect_peer(socket, in->addr.c_str());
+#endif // ZMQ_BUILD_DRAFT_API
+    }
+
+    void msg_set_routing_id(msg_set_routing_id_in *in, msg_set_routing_id_out *out)
+    {
+#ifdef ZMQ_BUILD_DRAFT_API
+        zmq_msg_t *msg = msgHandles.get(in->msg);
+        out->result = zmq_msg_set_routing_id(msg, in->routing_id);
+#endif // ZMQ_BUILD_DRAFT_API
+    }
+
+    void msg_routing_id(msg_routing_id_in *in, msg_routing_id_out *out)
+    {
+#ifdef ZMQ_BUILD_DRAFT_API
+        zmq_msg_t *msg = msgHandles.get(in->msg);
+        out->routing_id = zmq_msg_routing_id(msg);
+#endif // ZMQ_BUILD_DRAFT_API
+    }
+
+    void msg_set_group(msg_set_group_in *in, msg_set_group_out *out)
+    {
+#ifdef ZMQ_BUILD_DRAFT_API
+        zmq_msg_t *msg = msgHandles.get(in->msg);
+        out->result = zmq_msg_set_group(msg, in->group.c_str());
+#endif // ZMQ_BUILD_DRAFT_API
+    }
+
+    void msg_group(msg_group_in *in, msg_group_out *out)
+    {
+#ifdef ZMQ_BUILD_DRAFT_API
+        zmq_msg_t *msg = msgHandles.get(in->msg);
+        const char *g = zmq_msg_group(msg);
+        if(g)
+        {
+            out->result = 0;
+            out->group = std::string(g);
+        }
+        else
+        {
+            out->result = -1;
+        }
+#endif // ZMQ_BUILD_DRAFT_API
+    }
+
 private:
     void *global_context = nullptr;
     std::string global_context_handle;

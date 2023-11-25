@@ -354,4 +354,87 @@
             <param name="patch" type="int" />
         </return>
     </command>
+    <!-- draft api: -->
+    <command name="ctx_set_ext">
+        <params>
+            <param name="context" type="string" />
+            <param name="option_name" type="int" />
+            <param name="option_value" type="buffer" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="ctx_get_ext">
+        <params>
+            <param name="context" type="string" />
+            <param name="option_name" type="int" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+            <param name="data" type="buffer" nullable="true" />
+        </return>
+    </command>
+    <command name="join">
+        <params>
+            <param name="socket" type="string" />
+            <param name="group" type="string" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="leave">
+        <params>
+            <param name="socket" type="string" />
+            <param name="group" type="string" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="connect_peer">
+        <params>
+            <param name="socket" type="string" />
+            <param name="addr" type="string" />
+        </params>
+        <return>
+            <param name="result" type="long" />
+        </return>
+    </command>
+    <command name="msg_set_routing_id">
+        <params>
+            <param name="msg" type="string" />
+            <param name="routing_id" type="long" />
+        </params>
+        <return>
+            <param name="result" type="long" />
+        </return>
+    </command>
+    <command name="msg_routing_id">
+        <params>
+            <param name="msg" type="string" />
+        </params>
+        <return>
+            <param name="routing_id" type="long" />
+        </return>
+    </command>
+    <command name="msg_set_group">
+        <params>
+            <param name="msg" type="string" />
+            <param name="group" type="string" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+        </return>
+    </command>
+    <command name="msg_group">
+        <params>
+            <param name="msg" type="string" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+            <param name="group" type="string" />
+        </return>
+    </command>
 </plugin>
