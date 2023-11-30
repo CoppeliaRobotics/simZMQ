@@ -27,8 +27,8 @@ find_package(Python3 REQUIRED COMPONENTS Interpreter)
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/generated)
 add_custom_command(
     OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/generated/zmq_constants.cpp
-    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/zmq_constants.py
-    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/zmq_constants.py
+    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/sourceCode/zmq_constants.py
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/sourceCode/zmq_constants.py
         ${CMAKE_CURRENT_BINARY_DIR}/generated/zmq_constants.cpp
         ${ZMQ_H_DIR}/zmq.h
 )
@@ -49,11 +49,11 @@ find_package(CoppeliaSim 4.5.1.7 REQUIRED)
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/generated)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/external)
 
-coppeliasim_generate_stubs(${CMAKE_CURRENT_BINARY_DIR}/generated XML_FILE ${CMAKE_CURRENT_SOURCE_DIR}/callbacks.xml LUA_FILE ${CMAKE_CURRENT_SOURCE_DIR}/simZMQ.lua)
+coppeliasim_generate_stubs(${CMAKE_CURRENT_BINARY_DIR}/generated XML_FILE ${CMAKE_CURRENT_SOURCE_DIR}/sourceCode/callbacks.xml LUA_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lua/simZMQ.lua)
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/sourceCode/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
-coppeliasim_add_plugin(simZMQ SOURCES plugin.cpp)
+coppeliasim_add_plugin(simZMQ SOURCES sourceCode/plugin.cpp)
 add_dependencies(simZMQ generate_const)
 if(APPLE)
     # XXX: on macOS fails to link because only -lzmq is passed, without -L...
