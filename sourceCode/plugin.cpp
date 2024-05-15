@@ -78,19 +78,19 @@ public:
         }
     }
 
-    void onScriptStateDestroyed(int scriptID)
+    void onScriptStateAboutToBeDestroyed(int scriptHandle)
     {
-        for(auto msg : msgHandles.find(scriptID))
+        for(auto msg : msgHandles.find(scriptHandle))
         {
             delete msgHandles.remove(msg);
         }
-        for(auto socket : socketHandles.find(scriptID))
+        for(auto socket : socketHandles.find(scriptHandle))
         {
             void *s = const_cast<void*>(socket);
             zmq_close(s);
             socketHandles.remove(socket);
         }
-        for(auto context : contextHandles.find(scriptID))
+        for(auto context : contextHandles.find(scriptHandle))
         {
             void *c = const_cast<void*>(context);
             zmq_term(c);
