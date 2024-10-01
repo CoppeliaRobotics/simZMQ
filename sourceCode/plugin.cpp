@@ -78,7 +78,7 @@ public:
         }
     }
 
-    void onScriptStateAboutToBeDestroyed(int scriptHandle, int scriptUid)
+    void onScriptStateAboutToBeDestroyed(int scriptHandle, long long scriptUid)
     {
         for(auto msg : msgHandles.find(scriptHandle))
         {
