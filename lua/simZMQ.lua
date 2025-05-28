@@ -143,7 +143,7 @@ for func_name, flags_idx in pairs {msg_send = 3, msg_recv = 3, send = 3, recv = 
             end
             args[flags_idx] = args[flags_idx] | simZMQ.DONTWAIT
             while true do
-                local ret = {simZMQ['__' .. func_name](unpack(args))}
+                local ret = {simZMQ['__' .. func_name](table.unpack(args))}
                 if ret[1] == -1 then
                     local err = simZMQ.errnum()
                     if err == simZMQ.EAGAIN then
@@ -152,7 +152,7 @@ for func_name, flags_idx in pairs {msg_send = 3, msg_recv = 3, send = 3, recv = 
                         return -1, nil
                     end
                 else
-                    return unpack(ret)
+                    return table.unpack(ret)
                 end
             end
         end
