@@ -182,6 +182,15 @@ public:
         out->result = zmq_getsockopt(socket, in->option_name, reinterpret_cast<void*>(buf.data()), &len);
     }
 
+    void getsockopt_int(getsockopt_int_in *in, getsockopt_int_out *out)
+    {
+        void *socket = socketHandles.get(in->socket);
+        int value = 0;
+        size_t len = sizeof(value);
+        out->result = zmq_getsockopt(socket, in->option_name, reinterpret_cast<void*>(&value), &len);
+        out->value = value;
+    }
+
     void has(has_in *in, has_out *out)
     {
         out->result = zmq_has(in->capability.c_str());

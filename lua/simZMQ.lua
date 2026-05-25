@@ -46,6 +46,10 @@ function simZMQ.__checkError.getsockopt(result, value)
     if result ~= 0 then simZMQ.__raise() end
 end
 
+function simZMQ.__checkError.getsockopt_int(result, value)
+    if result ~= 0 then simZMQ.__raise() end
+end
+
 function simZMQ.__checkError.msg_close(result)
     if result ~= 0 then simZMQ.__raise() end
 end

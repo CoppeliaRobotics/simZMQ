@@ -107,6 +107,16 @@
             <param name="value" type="buffer" />
         </return>
     </command>
+    <command name="getsockopt_int">
+        <params>
+            <param name="socket" type="string" />
+            <param name="option_name" type="int" />
+        </params>
+        <return>
+            <param name="result" type="int" />
+            <param name="value" type="int" />
+        </return>
+    </command>
     <command name="has">
         <params>
             <param name="capability" type="string" />
