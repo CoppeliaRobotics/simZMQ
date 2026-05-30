@@ -1,5 +1,7 @@
 local simZMQ = loadPlugin 'simZMQ';
 
+local sim = require 'sim-1'
+
 function simZMQ.__raise()
     error(simZMQ.strerror(simZMQ.errnum()))
 end
