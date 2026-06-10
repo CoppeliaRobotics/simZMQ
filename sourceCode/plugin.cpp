@@ -41,9 +41,6 @@ public:
         sim::registerScriptVariable("ETERM", ETERM, 0);
 
 #include "zmq_constants.cpp"
-
-        setExtVersion("ZeroMQ Plugin");
-        setBuildDate(BUILD_DATE);
     }
 
     void onCleanup()
